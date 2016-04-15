@@ -1,0 +1,72 @@
+<script type="text/javascript">
+  RED.nodes.registerType('bcrypt', {
+    category: 'function',
+    color: '#a6bbcf',
+    defaults: {
+      name: {
+        value: ""
+      },
+      action: {
+        value: "encrypt"
+      },
+      field: {
+        value: "payload"
+      },
+      hash: {
+        value: "payload"
+      },
+      rounds: {
+        value: 10,
+        validate: RED.validators.number()
+      }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "file.png",
+    label: function() {
+      return this.name || "bcrypt";
+    }
+  });
+</script>
+
+<script type="text/x-red" data-template-name="bcrypt">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-action"><i class="fa fa-magic"></i> Action</label>
+    <select id="node-input-action">
+      <option value="encrypt">Encrypt</option>
+      <option value="verify">Verify</option>
+    </select>
+  </div>
+  <div class="form-row">
+    <label for="node-input-field"><i class="icon-tag"></i> Field</label>
+    <input type="text" id="node-input-field" placeholder="payload">
+  </div>
+  <div class="form-row">
+    <label for="node-input-hash"><i class="fa fa-hashtag"></i> Verify</label>
+    <input type="text" id="node-input-hash" placeholder="hash field">
+  </div>
+  <div class="form-row">
+    <label for="node-input-rounds"><i class="fa fa-refresh"></i> Rounds</label>
+    <input type="number" id="node-input-rounds" placeholder="10">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="bcrypt">
+  <div id="out">
+    <h1>node-red-contrib-bcrypt</h1>
+    <h2>Features</h2>
+    <ul>
+      <li>encrypt</li>
+      <li>verify</li>
+    </ul>
+    <p>Uses <a href="https://github.com/dcodeIO/bcrypt.js">bcrypt.js</a></p>
+    <h2>options</h2>
+    <p><strong>field</strong>: field to encrypt or to verify against <em>(dot.notation)</em></p>
+    <p><strong>verify</strong>: field to verify <em>(dot.notation)</em></p>
+    <p>The field specified will be replaced with the encrypted version if the action is set to encrypt.</p>
+  </div>
+</script>

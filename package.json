@@ -1,0 +1,21 @@
+{
+  "name": "node-red-contrib-bcrypt",
+  "version": "0.0.47",
+  "description": "Bcrypt.js for node-red",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wesley Stam <wstam88@gmail.com>",
+  "keywords": [
+    "node-red"
+  ],
+  "license": "ISC",
+  "node-red": {
+    "nodes": {
+      "bcrypt": "bcrypt/bcrypt.js"
+    }
+  },
+  "dependencies": {
+    "bcryptjs": "^2.3.0"
+  }
+}
