@@ -9,6 +9,11 @@
   "keywords": [
     "node-red"
   ],
+  "repository" :
+  { 
+  	"type" : "git",
+    "url" : "https://github.com/wstam88/node-red-contrib-bcrypt.git"
+  },
   "license": "ISC",
   "node-red": {
     "nodes": {

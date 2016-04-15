@@ -20,4 +20,4 @@ The field specified will be replaced with the encrypted version if the action is
 
 ## Outputs
 
-`msg.match` will be eather true or false
+`msg.match` will be either true or false
