@@ -1,61 +1,194 @@
 <script type="text/javascript">
-  RED.nodes.registerType('bcrypt', {
-    category: 'function',
-    color: '#a6bbcf',
+  RED.nodes.registerType("bcrypt", {
+    category: "function",
+    color: "#2aa4fe",
     defaults: {
       name: {
-        value: ""
+        value: "",
       },
       action: {
-        value: "encrypt"
+        value: "encrypt",
       },
       field: {
-        value: "payload"
+        value: "payload",
       },
       hash: {
-        value: "payload"
+        value: "payload",
+      },
+      target: {
+        value: "payload",
+      },
+      assignment: {
+        value: "replace",
+      },
+      match: {
+        value: "match",
+      },
+      outputs: {
+        value: 1
       },
       rounds: {
         value: 10,
-        validate: RED.validators.number()
-      }
+        validate: RED.validators.number(),
+      },
     },
     inputs: 1,
     outputs: 1,
-    icon: "file.png",
-    label: function() {
-      return this.name || "bcrypt";
-    }
+    outputLabels: ["Output", "Invalid"],
+    icon: "lock.png",
+    label: function () {
+      var action = this.action === "encrypt" ? "Hash" : "Compare";
+      return this.name || action;
+    },
+    oneditprepare: function () {
+      const self = this;
+      Alpine.data("bcrypt", function () {
+        return {
+          action: self.action || "encrypt",
+          field: self.field || "payload",
+          hash: self.hash || "payload",
+          target: self.target || "payload",
+          assignment: self.assignment || "replace",
+          match: self.match || "match",
+          outputs: self.outputs || 1,
+          rounds: self.rounds || 10,
+        };
+      });
+    },
   });
 </script>
 
-<script type="text/x-red" data-template-name="bcrypt">
-  <div class="form-row">
-    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-    <input type="text" id="node-input-name" placeholder="Name">
-  </div>
-  <div class="form-row">
-    <label for="node-input-action"><i class="fa fa-magic"></i> Action</label>
-    <select id="node-input-action">
-      <option value="encrypt">Encrypt</option>
-      <option value="verify">Verify</option>
-    </select>
-  </div>
-  <div class="form-row">
-    <label for="node-input-field"><i class="icon-tag"></i> Field</label>
-    <input type="text" id="node-input-field" placeholder="payload">
-  </div>
-  <div class="form-row">
-    <label for="node-input-hash"><i class="fa fa-hashtag"></i> Verify</label>
-    <input type="text" id="node-input-hash" placeholder="hash field">
-  </div>
-  <div class="form-row">
-    <label for="node-input-rounds"><i class="fa fa-refresh"></i> Rounds</label>
-    <input type="number" id="node-input-rounds" placeholder="10">
+<script type="text/html" data-template-name="bcrypt">
+  <style>
+    .bcrypt-help {
+      margin-left: 105px !important;
+      padding: 5px 0px;
+      font-family: Menlo,Consolas,"DejaVu Sans Mono",Courier,monospace;
+      font-size: 14px;
+      color: var(--red-ui-text-color-error);
+    }
+  </style>
+
+  <div x-data="bcrypt">
+    <h3>General</h3>
+    <div class="form-row">
+      <label for="node-input-name">Name</label>
+      <input
+        type="text"
+        id="node-input-name"
+        placeholder="Name"
+        x-model="name"
+      />
+      <p class="bcrypt-help">The name of the node. Defaults to the name of the action</p>
+    </div>
+
+    <div class="form-row">
+      <label for="node-input-action">Action</label>
+      <select id="node-input-action" x-model="action">
+        <option value="encrypt">Hash</option>
+        <option value="verify">Compare</option>
+      </select>
+      <p class="bcrypt-help">The action to perform.</p>
+    </div>
+
+    <!-- hashing -->
+    <div x-show="action === 'encrypt'">
+      <h3>Hashing</h3>
+
+      <div class="form-row">
+        <label for="node-input-assignment">On hash</label>
+        <select id="node-input-assignment" x-model="assignment">
+          <option value="replace">Replace field with hash</option>
+          <option value="assign">Assign to another field</option>
+        </select>
+        <p class="bcrypt-help">
+          What to do with the hash after it has been generated.
+        </p>
+      </div>
+
+      <div class="form-row" x-show="assignment === 'assign'">
+        <label for="node-input-target">Assign to</label>
+        <input type="text" id="node-input-target" placeholder="payload" />
+        <p class="bcrypt-help">The field to assign the hash to.</p>
+      </div>
+
+      <div class="form-row">
+        <label for="node-input-field">Field</label>
+        <input
+          type="text"
+          id="node-input-field"
+          placeholder="payload"
+          x-model="field"
+        />
+        <p class="bcrypt-help">The field to hash.</p>
+      </div>
+
+      <div class="form-row">
+        <label for="node-input-rounds">Rounds</label>
+        <input
+          type="number"
+          id="node-input-rounds"
+          placeholder="10"
+          x-model="rounds"
+        />
+        <p class="bcrypt-help">The number of rounds to use.<br />
+          A higher number of rounds is more secure, but slower.</p>
+        </p>
+      </div>
+    </div>
+
+    <!-- Compare -->
+    <div x-show="action === 'verify'">
+      <h3>Compare</h3>
+
+      <div class="form-row">
+        <label for="node-input-hash">Hash</label>
+        <input
+          type="text"
+          id="node-input-hash"
+          placeholder="Hash field to compare"
+          x-model="hash"
+        />
+        <p class="bcrypt-help">The hash to compare.</p>
+      </div>
+
+      <div class="form-row">
+        <label for="node-input-field">Field</label>
+        <input
+          type="text"
+          id="node-input-field"
+          placeholder="payload"
+          x-model="field"
+        />
+        <p class="bcrypt-help">Plaintext field to compare against the hash.</p>
+      </div>
+
+      <div class="form-row">
+        <label for="node-input-match">Match</label>
+        <input
+          type="text"
+          id="node-input-match"
+          placeholder="match"
+          x-model="match"
+        />
+        <p class="bcrypt-help">Assign boolean to this field to indicate if the hash matches.</p>
+      </div>
+
+      <div class="form-row">
+        <label for="node-input-outputs">Output</label>
+        <select id="node-input-outputs" x-model="outputs">
+          <option value="1">Single</option>
+          <option value="2">Separate</option>
+        </select>
+        <p class="bcrypt-help">
+          Whether to output success and failure separately or as a single output.
+        </p>
+      </div>
+    </div>
   </div>
 </script>
 
-<script type="text/x-red" data-help-name="bcrypt">
+<script type="text/html" data-help-name="bcrypt">
   <div id="out">
     <h1>node-red-contrib-bcrypt</h1>
     <h2>Features</h2>
@@ -65,8 +198,16 @@
     </ul>
     <p>Uses <a href="https://github.com/dcodeIO/bcrypt.js">bcrypt.js</a></p>
     <h2>options</h2>
-    <p><strong>field</strong>: field to encrypt or to verify against <em>(dot.notation)</em></p>
+    <p>
+      <strong>field</strong>: field to encrypt or to verify against
+      <em>(dot.notation)</em>
+    </p>
     <p><strong>verify</strong>: field to verify <em>(dot.notation)</em></p>
-    <p>The field specified will be replaced with the encrypted version if the action is set to encrypt.</p>
+    <p>
+      The field specified will be replaced with the encrypted version if the
+      action is set to encrypt.
+    </p>
   </div>
 </script>
+
+<script src="resources/node-red-contrib-bcrypt/alpine.js" defer></script>

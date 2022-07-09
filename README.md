@@ -5,7 +5,7 @@ A node that can be used for encrypting user passwords
 
 ## Features
 
- * encrypt
+ * encrypt/hash
  * verify
 
 Uses **[bcrypt.js](https://github.com/dcodeIO/bcrypt.js)**

@@ -1,13 +1,13 @@
 {
   "name": "node-red-contrib-bcrypt",
-  "version": "0.0.49",
+  "version": "0.1.0",
   "description": "Bcrypt.js for node-red",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Wesley Stam <wstam88@gmail.com>",
   "keywords": [
-    "node-red"
+    "node-red bcrypt bcryptjs bcrypt-nodejs password hashing" 
   ],
   "repository": {
     "type": "git",
