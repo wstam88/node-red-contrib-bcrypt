@@ -82,13 +82,13 @@ module.exports = function (RED) {
     var rounds = parseInt(config.rounds || 10);
 
     this.on("input", function (msg) {
-      var salt = bcryptjs.genSaltSync(rounds);
       var data = String(get(msg, field));
 
       /**
        * HASHING
        */
       if (action === "encrypt") {
+        var salt = bcryptjs.genSaltSync(rounds);
         var newHash = bcryptjs.hashSync(data, salt);
 
         if (assignment === "replace") {
