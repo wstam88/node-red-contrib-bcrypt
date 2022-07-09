@@ -2,18 +2,17 @@
     {
         "id": "44cb1ec64f0c78d1",
         "type": "bcrypt",
-        "z": "e96f670214121310",
-        "name": "",
-        "action": "verify",
+        "z": "d9738de9e7b466e0",
+        "name": "asdf",
+        "action": "encrypt",
         "field": "payload",
         "hash": "payload",
         "target": "",
-        "assignment": "assign",
+        "assignment": "replace",
         "match": "match",
-        "output": "single",
         "outputs": 1,
         "rounds": "10",
-        "x": 260,
+        "x": 230,
         "y": 120,
         "wires": [
             [
@@ -24,7 +23,7 @@
     {
         "id": "ba38225ef5691ed6",
         "type": "inject",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "",
         "props": [
             {
@@ -38,7 +37,7 @@
         "topic": "",
         "payload": "6",
         "payloadType": "num",
-        "x": 130,
+        "x": 110,
         "y": 120,
         "wires": [
             [
@@ -49,7 +48,7 @@
     {
         "id": "cd5ed81131b0f293",
         "type": "debug",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "",
         "active": true,
         "tosidebar": true,
@@ -59,24 +58,23 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 390,
+        "x": 370,
         "y": 120,
         "wires": []
     },
     {
         "id": "69d161daec8d0273",
         "type": "bcrypt",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "",
         "action": "verify",
         "field": "payload",
         "hash": "hash",
         "assignment": "replace",
         "match": "isGood",
-        "output": "single",
         "outputs": 2,
         "rounds": 10,
-        "x": 260,
+        "x": 240,
         "y": 420,
         "wires": [
             [
@@ -90,7 +88,7 @@
     {
         "id": "aef0ed34375d92bd",
         "type": "inject",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "Good",
         "props": [
             {
@@ -109,7 +107,7 @@
         "topic": "",
         "payload": "6",
         "payloadType": "num",
-        "x": 130,
+        "x": 110,
         "y": 400,
         "wires": [
             [
@@ -120,7 +118,7 @@
     {
         "id": "8ae20e590a01fd25",
         "type": "debug",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "good",
         "active": true,
         "tosidebar": true,
@@ -130,14 +128,14 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 390,
+        "x": 370,
         "y": 400,
         "wires": []
     },
     {
         "id": "15cba0e8d11eda76",
         "type": "debug",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "bad",
         "active": true,
         "tosidebar": true,
@@ -147,14 +145,14 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 390,
+        "x": 370,
         "y": 440,
         "wires": []
     },
     {
         "id": "ffc4409f7cb3f6ba",
         "type": "inject",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "Bad",
         "props": [
             {
@@ -173,7 +171,7 @@
         "topic": "",
         "payload": "7",
         "payloadType": "num",
-        "x": 130,
+        "x": 110,
         "y": 440,
         "wires": [
             [
@@ -184,7 +182,7 @@
     {
         "id": "bbe0dced4cdd0e52",
         "type": "bcrypt",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "",
         "action": "verify",
         "field": "payload",
@@ -192,10 +190,9 @@
         "target": "",
         "assignment": "replace",
         "match": "isGood",
-        "output": "single",
         "outputs": 1,
         "rounds": 10,
-        "x": 260,
+        "x": 240,
         "y": 260,
         "wires": [
             [
@@ -206,7 +203,7 @@
     {
         "id": "619be956afc9797c",
         "type": "inject",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "Good",
         "props": [
             {
@@ -225,7 +222,7 @@
         "topic": "",
         "payload": "6",
         "payloadType": "num",
-        "x": 130,
+        "x": 110,
         "y": 240,
         "wires": [
             [
@@ -236,7 +233,7 @@
     {
         "id": "927a9666a84b65ef",
         "type": "debug",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "GOOD OR BAD",
         "active": true,
         "tosidebar": true,
@@ -246,14 +243,14 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 420,
+        "x": 400,
         "y": 260,
         "wires": []
     },
     {
         "id": "bd512b7da17fdc6f",
         "type": "inject",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "Bad",
         "props": [
             {
@@ -272,7 +269,7 @@
         "topic": "",
         "payload": "7",
         "payloadType": "num",
-        "x": 130,
+        "x": 110,
         "y": 280,
         "wires": [
             [
@@ -283,7 +280,7 @@
     {
         "id": "9d7d14ceb6ad6c7d",
         "type": "bcrypt",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "",
         "action": "encrypt",
         "field": "payload",
@@ -291,10 +288,9 @@
         "target": "hash",
         "assignment": "assign",
         "match": "match",
-        "output": "single",
         "outputs": 1,
         "rounds": "10",
-        "x": 250,
+        "x": 230,
         "y": 560,
         "wires": [
             [
@@ -305,7 +301,7 @@
     {
         "id": "9d85d81f3dd45ef1",
         "type": "inject",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "good",
         "props": [
             {
@@ -319,7 +315,7 @@
         "topic": "",
         "payload": "6",
         "payloadType": "num",
-        "x": 130,
+        "x": 110,
         "y": 560,
         "wires": [
             [
@@ -330,7 +326,7 @@
     {
         "id": "d5fbfbeed27b8cf3",
         "type": "bcrypt",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "",
         "action": "verify",
         "field": "payload",
@@ -338,10 +334,9 @@
         "target": "",
         "assignment": "replace",
         "match": "isGood",
-        "output": "single",
         "outputs": 1,
         "rounds": 10,
-        "x": 380,
+        "x": 360,
         "y": 560,
         "wires": [
             [
@@ -352,7 +347,7 @@
     {
         "id": "33375c74cb0b827b",
         "type": "debug",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "good",
         "active": true,
         "tosidebar": true,
@@ -362,14 +357,14 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 510,
+        "x": 490,
         "y": 560,
         "wires": []
     },
     {
         "id": "465fdbece6b334f3",
         "type": "bcrypt",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "",
         "action": "verify",
         "field": "payload",
@@ -377,10 +372,9 @@
         "target": "",
         "assignment": "replace",
         "match": "isGood",
-        "output": "single",
         "outputs": 1,
         "rounds": 10,
-        "x": 380,
+        "x": 360,
         "y": 600,
         "wires": [
             [
@@ -391,7 +385,7 @@
     {
         "id": "484a0c96cde5eb67",
         "type": "bcrypt",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "",
         "action": "encrypt",
         "field": "payload",
@@ -399,10 +393,9 @@
         "target": "hash",
         "assignment": "assign",
         "match": "match",
-        "output": "single",
         "outputs": 1,
         "rounds": "10",
-        "x": 250,
+        "x": 230,
         "y": 600,
         "wires": [
             [
@@ -413,7 +406,7 @@
     {
         "id": "b1af859833029bb1",
         "type": "debug",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "bad",
         "active": true,
         "tosidebar": true,
@@ -423,14 +416,14 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 510,
+        "x": 490,
         "y": 600,
         "wires": []
     },
     {
         "id": "4f160fe2dae79fc3",
         "type": "inject",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "bad",
         "props": [
             {
@@ -444,7 +437,7 @@
         "topic": "",
         "payload": "6",
         "payloadType": "num",
-        "x": 130,
+        "x": 110,
         "y": 600,
         "wires": [
             [
@@ -455,40 +448,40 @@
     {
         "id": "f09cabed71250e79",
         "type": "comment",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "Hash msg.payload and replace field with hash",
         "info": "",
-        "x": 220,
+        "x": 200,
         "y": 80,
         "wires": []
     },
     {
         "id": "b4decbdcd72d45fb",
         "type": "comment",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "Compare msg.hash against msg.payload and assign result to msg.isGood",
         "info": "",
-        "x": 320,
+        "x": 300,
         "y": 200,
         "wires": []
     },
     {
         "id": "c6434dd000580917",
         "type": "comment",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "Compare msg.hash against msg.payload and assign result to msg.isGood using seperate output",
         "info": "",
-        "x": 390,
+        "x": 370,
         "y": 360,
         "wires": []
     },
     {
         "id": "14194bdc85dc316a",
         "type": "comment",
-        "z": "e96f670214121310",
+        "z": "d9738de9e7b466e0",
         "name": "Other",
         "info": "",
-        "x": 110,
+        "x": 90,
         "y": 520,
         "wires": []
     }
