@@ -1,4 +1,6 @@
-<script type="text/javascript">
+<script defer src="resources/node-red-contrib-bcrypt/alpine.js"></script>
+
+<script>
   RED.nodes.registerType("bcrypt", {
     category: "function",
     color: "#2aa4fe",
@@ -43,25 +45,17 @@
     oneditprepare: function () {
       var self = this;
 
-      if (typeof Alpine === "undefined") {
-        var tag = document.createElement("script");
-        tag.src = "resources/node-red-contrib-bcrypt/alpine.js";
-        document.getElementsByTagName("body")[0].appendChild(tag);
-      }
-
-      document.addEventListener("alpine:init", () => {
-        Alpine.data("bcrypt", function () {
-          return {
-            action: self.action || "encrypt",
-            field: self.field || "payload",
-            hash: self.hash || "payload",
-            target: self.target || "payload",
-            assignment: self.assignment || "replace",
-            match: self.match || "match",
-            outputs: self.outputs || 1,
-            rounds: self.rounds || 10,
-          };
-        });
+      Alpine.data("bcrypt", function () {
+        return {
+          action: self.action || "encrypt",
+          field: self.field || "payload",
+          hash: self.hash || "payload",
+          target: self.target || "payload",
+          assignment: self.assignment || "replace",
+          match: self.match || "match",
+          outputs: self.outputs || 1,
+          rounds: self.rounds || 10,
+        };
       });
     },
   });
